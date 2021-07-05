@@ -1,3 +1,4 @@
+ Spring
  简介一下Spring框架。
 
 答：Spring框架是一个开源的容器性质的轻量级框架。主要有三大特点：容器、IOC（控制反转）、AOP（面向切面编程）。
@@ -35,6 +36,32 @@ ApplicationContext接口是用来替代BeanFactory接口的，通过new （Appli
 
 BeanFactory接口是Spring框架的顶层接口，是最原始的接口，ApplicationContext是对BeanFactory扩展，BeanFactory在第一次getBean时才会初始化Bean, ApplicationContext是会在加载配置文件时初始化Bean
 
+spring MVC
+测试准备工作：
+1、搭建测试Web环境
+@RunWith(UnitilsJUnit4TestClassRunner.class)
+@SpringApplicationContext({
+"classpath:*.xml","file:src/main/webapp/WEB-INF/spring-configuration/*.xml",
+"file:src/main/webapp/WEB-INF/*.xml"
+})
+2、注入Controller 类
+@Controller
+BeanController controller;
+3、编写测试数据
+测试数据的文件名一定要与测试类的文件名相同，比如测试数据BeanControllerTest.xml ，测试类 BeanControllerTest。
+4、注入测试数据
+@Test
+@DataSet
+public void testBean(){}
+
+
+
+
+
+<!-- 指定GetPersonList处理的代码，和注入实现业务的代码 -->
+<bean name="/GetPersonList" class="cn.base.GetPersonListAction">
+<property name="getPersonList" ref=" getPersonListServices"></property>
+</bean>
 
 
 
@@ -54,6 +81,7 @@ mybatis知识点
 （6）session内部通过Executor执行器执行操作。Executor会用到mapped statement对象，这个对象是对数据库存储的封装，包括：sql语句、输入参数、输出结果类型
 （7）关闭session
 3、sql标签：用来封装sql语句或者sql片段
+
 
 MyBatis的DAO开发方法：
 1、 使用mapper代理方法：
